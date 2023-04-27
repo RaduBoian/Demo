@@ -1,0 +1,49 @@
+body{
+    margin-left:15%;
+    margin-right: 15%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header{
+    background-color: rgb(12, 180, 169);
+    font-size: 30pt;
+    text-align: center;
+    height: 150px;
+}
+
+.buttons{
+    width: 100%;
+    font-size: 20pt;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: rgb(67, 67, 67);
+
+}
+
+a:link{
+    color: rgb(12,180,169);
+}
+
+a:visited{
+    color:rgb(12,180,169);
+}
+
+.button1{
+    width: 50%;
+    border-top: solid rgb(161, 78, 5);
+    border-right: solid rgb(161, 78, 5);
+}
+
+.button2{
+    width:50%;
+    border-top: solid rgb(161, 78, 5);
+    border-left:solid rgb(161, 78, 5);
+}
+
+main{
+    
+}
+
+#untertitel{
+    font-size: 15pt;
+}

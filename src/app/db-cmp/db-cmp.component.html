@@ -1,0 +1,134 @@
+<section class="buttons">
+    <div >
+      <button (click)="getContests()" mat-raised-button color="primary">Show Contests</button>
+      <button (click)="getAthletes()" mat-raised-button color="primary">Show Athletes</button>
+      <button (click)="showNameBox()" mat-raised-button color="primary">First Places</button>
+      <button (click)="showAthleteAddScreen()" mat-raised-button color="primary">Add Athlete</button>
+      <button (click)="showContestAddScreen()" mat-raised-button color="primary">Add Contest</button>
+
+      <!--Contest Table-->
+      <table *ngIf="showContestList==true" mat-table [dataSource]="contests" class="mat-elevation-z8">
+
+      
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Wettbewerb </th>
+          <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Ort">
+          <th mat-header-cell *matHeaderCellDef> Ort </th>
+          <td mat-cell *matCellDef="let element"> {{element.Ort}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="FirstPlace">
+          <th mat-header-cell *matHeaderCellDef> First Place </th>
+          <td mat-cell *matCellDef="let element"> {{element.FirstPlace}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="contestColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: contestColumns;"></tr>
+      </table>
+
+
+      <!--Name TextBox-->
+      <div>
+      <mat-form-field *ngIf="showNameField==true">
+        <mat-label>Type athlete name</mat-label>
+        <input matInput type="text" [(ngModel)]="atlName">
+        <button *ngIf="atlName" matSuffix mat-button (click)="searchFirstPlaces(atlName)">Search</button>
+        <button *ngIf="atlName" matSuffix mat-icon-button aria-label="Clear" (click)="atlName=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    </div>
+
+<!--Athlete Table-->
+<table *ngIf="showAthleteList==true" mat-table [dataSource]="sportler" class="mat-elevation-z8">
+
+      
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Alter">
+      <th mat-header-cell *matHeaderCellDef> Alter </th>
+      <td mat-cell *matCellDef="let element"> {{element.Alter}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Staat">
+      <th mat-header-cell *matHeaderCellDef> Heimatstaat </th>
+      <td mat-cell *matCellDef="let element"> {{element.Staat}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="athleteColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: athleteColumns;"></tr>
+  </table>
+
+
+  <!--Add Athlete-->
+  <div *ngIf="showAthleteAdd==true">
+      <mat-form-field>
+          <mat-label>Type athlete name</mat-label>
+          <input matInput type="text" [(ngModel)]="newAtlName">
+          <button *ngIf="newAtlName" matSuffix mat-icon-button aria-label="Clear" (click)="newAtlName=''">
+            <mat-icon>close</mat-icon>
+          </button>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Type athlete age</mat-label>
+        <input matInput type="text" [(ngModel)]="newAtlAge">
+        <button *ngIf="newAtlAge" matSuffix mat-icon-button aria-label="Clear" (click)="newAtlAge=undefined">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field>
+        <mat-label>Type athlete Country</mat-label>
+        <input matInput type="text" [(ngModel)]="newAtlStaat">
+        <button *ngIf="newAtlStaat" matSuffix mat-icon-button aria-label="Clear" (click)="newAtlStaat=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <button mat-button (click)="addAthlete(newAtlName,newAtlAge,newAtlStaat)">
+        Add Athlete
+    </button>
+  </div>
+
+  
+  <!--Add Contest-->
+  <div *ngIf="showContestAdd==true">
+    <mat-form-field>
+        <mat-label>Type Contest name</mat-label>
+        <input matInput type="text" [(ngModel)]="newContName">
+        <button *ngIf="newContName" matSuffix mat-icon-button aria-label="Clear" (click)="newContName=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Type Contest Place</mat-label>
+      <input matInput type="text" [(ngModel)]="newContOrt">
+      <button *ngIf="newContOrt" matSuffix mat-icon-button aria-label="Clear" (click)="newContOrt=''">
+        <mat-icon>close</mat-icon>
+      </button>
+  </mat-form-field>
+
+  <br>
+  <mat-form-field>
+      <mat-label>Type Contest Winner</mat-label>
+      <input matInput type="text" [(ngModel)]="newContFirst">
+      <button *ngIf="newContFirst" matSuffix mat-icon-button aria-label="Clear" (click)="newContFirst=''">
+        <mat-icon>close</mat-icon>
+      </button>
+  </mat-form-field>
+
+  <button mat-button (click)="addContest(newContName,newContOrt,newContFirst)">
+      Add Contest
+  </button>
+</div>
+    </div>
+  </section>
